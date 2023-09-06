@@ -40,23 +40,44 @@ public class Testes {
     }
 
     @Test
-    public void stringVazia(){
+    public void stringEmBranco(){
         String[] esperado = null;
         String[] obtido = App.substringsBetween(" ", "a", "c");
         assertArrayEquals(esperado, obtido);
     }
 
     @Test
-    public void openVazio(){
+    public void openEmBranco(){
         String[] esperado = null;
         String[] obtido = App.substringsBetween("axcaycazc", " ", "c");
         assertArrayEquals(esperado, obtido);
     }
 
     @Test
-    public void closeVazio(){
+    public void closeEmBranco(){
         String[] esperado = null;
         String[] obtido = App.substringsBetween("axcaycazc", "a", " ");
+        assertArrayEquals(esperado, obtido);
+    }
+
+    @Test
+    public void stringVazia(){
+        String[] esperado = null;
+        String[] obtido = App.substringsBetween("", "a", "c");
+        assertArrayEquals(esperado, obtido);
+    }
+
+    @Test
+    public void openVazio(){
+        String[] esperado = null;
+        String[] obtido = App.substringsBetween("axcaycazc", "", "c");
+        assertArrayEquals(esperado, obtido);
+    }
+
+     @Test
+    public void closeVazio(){
+        String[] esperado = null;
+        String[] obtido = App.substringsBetween("axcaycazc", "a", "");
         assertArrayEquals(esperado, obtido);
     }
 
@@ -69,10 +90,26 @@ public class Testes {
 
     @Test
     public void strignSubstrings(){
-        String[] esperado = {"c", "a", "c", "a", "c", "a"};
+        String[] esperado = {"", "", "", ""};
         String[] obtido = App.substringsBetween("acacacac", "a", "c");
         assertArrayEquals(esperado, obtido);
     }
 
-    
+    @Test
+    public void testSubstringsBetweenWithNoMatches() {
+        String input = "This is a test string with no matches.";
+        String[] esperado = null;
+        String[] result = App.substringsBetween(input, "start", "end");
+        assertArrayEquals(esperado, result);
+    }
+
+    @Test
+    public void testSubstringsBetweenWithMultipleMatches() {
+        String input = "This [open] is [a] test [string] with [multiple] matches [close].";
+        String[] expected = {"open", "a", "string", "multiple", "close"};
+        String[] result = App.substringsBetween(input, "[", "]");
+        assertArrayEquals(expected, result);
+    }
+
+
 }

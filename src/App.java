@@ -20,6 +20,10 @@ public class App {
             return null;
         }
 
+        if (str == "" || open == "" || close == "") {
+            return null;
+        }
+
         //Extrai o tamanho da string
         final int strLen = str.length();
 
