@@ -89,9 +89,30 @@ public class Testes {
     }
 
     @Test
-    public void strignSubstrings(){
+    public void stringDeSubstrings(){
         String[] esperado = {"", "", "", ""};
         String[] obtido = App.substringsBetween("acacacac", "a", "c");
+        assertArrayEquals(esperado, obtido);
+    }
+
+    @Test
+    public void substringCaracterCloseDiferente(){
+        String[] esperado = null;
+        String[] obtido = App.substringsBetween("aaaaaa", "a", "c");
+        assertArrayEquals(esperado, obtido);
+    }
+
+    @Test
+    public void substringCaracterOpenDiferente(){
+        String[] esperado = null;
+        String[] obtido = App.substringsBetween("aaaaaa", "c", "a");
+        assertArrayEquals(esperado, obtido);
+    }
+
+    @Test
+    public void substringCaracterOpenCloseIguais(){
+        String[] esperado = {"", "", ""};
+        String[] obtido = App.substringsBetween("aaaaaa", "a", "a");
         assertArrayEquals(esperado, obtido);
     }
 
